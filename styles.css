@@ -1,0 +1,339 @@
+/* ---------------------------------------------
+   Tokens — professional light palette
+--------------------------------------------- */
+:root {
+    --bg: #FFFFFF;
+    --panel: #F6F6F4;
+    --panel-alt: #EFEEEA;
+    --line: #DEDCD5;
+    --text: #1C1C1A;
+    --text-muted: #66645C;
+
+    --amber: #1E5B8C;
+    /* primary accent — designators, pin labels */
+    --amber-dim: #A9C3D6;
+    --blue: #3F6E68;
+    /* secondary accent — links */
+
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-head: "Space Grotesk", "Archivo", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+
+    --sidebar-w: 260px;
+    --gutter: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ---------------------------------------------
+   Reset / base
+--------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(63, 110, 104, 0.4);
+}
+
+a:hover {
+    border-bottom-color: var(--blue);
+}
+
+a:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 0.6em 0;
+}
+
+p {
+    margin: 0 0 1em 0;
+    max-width: 60ch;
+    color: var(--text-muted);
+}
+
+/* ---------------------------------------------
+   Sidebar
+--------------------------------------------- */
+aside {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+aside strong {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--amber);
+    border: 1px solid var(--amber-dim);
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+aside p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    max-width: none;
+    margin: 0;
+}
+
+aside nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+aside nav a {
+    border-bottom: none;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+aside nav a:hover {
+    color: var(--amber);
+}
+
+aside dl {
+    margin: 0;
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+}
+
+aside dl>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    border-top: 1px solid var(--line);
+}
+
+aside dl dt {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+aside dl dd {
+    margin: 0;
+    color: var(--amber);
+    text-align: right;
+}
+
+/* ---------------------------------------------
+   Main sections
+--------------------------------------------- */
+main {
+    min-width: 0;
+}
+
+main>section,
+main>footer {
+    padding: clamp(2.5rem, 5vw, 3.5rem) var(--gutter);
+    border-bottom: 1px solid var(--line);
+}
+
+#overview h1 {
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    max-width: 20ch;
+}
+
+#overview p {
+    max-width: 55ch;
+}
+
+/* ---------------------------------------------
+   Projects — horizontal scroll-snap strip
+--------------------------------------------- */
+#project-strip {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+#project-strip:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 4px;
+}
+
+#project-strip article {
+    scroll-snap-align: start;
+    flex: 0 0 clamp(240px, 70vw, 320px);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 1.5rem;
+}
+
+#project-strip article>p:first-child {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--amber);
+    margin-bottom: 0.75rem;
+}
+
+#project-strip h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+#project-strip article p:not(:first-child) {
+    font-size: 0.92rem;
+}
+
+#project-strip ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1rem 0 0 0;
+    padding: 0;
+}
+
+#project-strip li {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+    padding: 0.2rem 0.45rem;
+}
+
+/* ---------------------------------------------
+   Pinout list
+--------------------------------------------- */
+#pinout dl {
+    margin: 1.5rem 0 0 0;
+}
+
+#pinout dl>div {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--line);
+}
+
+#pinout dl>div:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+#pinout dt {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--amber);
+}
+
+#pinout dd {
+    margin: 0;
+    color: var(--text);
+}
+
+/* ---------------------------------------------
+   About / contact
+--------------------------------------------- */
+#about p,
+#contact p {
+    max-width: 58ch;
+}
+
+#contact dl {
+    margin-top: 1.5rem;
+    max-width: 28rem;
+}
+
+#contact dl>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+#contact dt {
+    color: var(--text-muted);
+}
+
+#contact dd {
+    margin: 0;
+}
+
+/* ---------------------------------------------
+   Footer
+--------------------------------------------- */
+main>footer {
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ---------------------------------------------
+   Responsive — sidebar becomes a top row
+--------------------------------------------- */
+@media (max-width: 800px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    aside nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    aside dl {
+        margin-top: 0;
+    }
+}
